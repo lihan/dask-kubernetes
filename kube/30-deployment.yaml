@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dask-notebook
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: dask-notebook
+    spec:
+      terminationGracePeriodSeconds: 60
+      serviceAccountName: daskkubernetes
+      containers:
+        - name: notebook
+          imagePullPolicy: Always
+          image: lihan/dask-ml:v4
+          args: ["bash", "/work/config/run.sh"]
+          resources:
+            requests:
+              cpu: "1000m"
+              memory: "8000Mi"
+            limits:
+              cpu: "1000m"
+              memory: "8000Mi"
+          ports:
+            - name: http
+              containerPort: 8888
+            - name: lab-http
+              containerPort: 8889
+            - name: status-http
+              containerPort: 8787
+          securityContext:
+            runAsGroup: 1000
+          workingDir: /work
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8888
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 5
+          volumeMounts:
+            - name: notebook-storage
+              mountPath: /work/notebooks
+      volumes:
+        - name: notebook-storage
+          persistentVolumeClaim:
+            claimName: notebook-volume

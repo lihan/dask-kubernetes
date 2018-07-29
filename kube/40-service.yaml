@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-notebooks
+spec:
+  selector:
+    app: dask-notebook
+  ports:
+  - protocol: TCP
+    port: 8888
+    name: http
+  - protocol: TCP
+    port: 8889
+    name: lab-http
+  - protocol: TCP
+    port: 8787
+    name: status-http
+

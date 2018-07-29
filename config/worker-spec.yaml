@@ -1,0 +1,18 @@
+kind: Pod
+metadata:
+  labels:
+    role: worker
+spec:
+  restartPolicy: Never
+  containers:
+  - image: lihan/dask-ml:v4
+    imagePullPolicy: Always
+    args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 3GB, --death-timeout, '60']
+    name: dask-worer
+    resources:
+      requests:
+        cpu: "800m"
+        memory: "3000Mi"
+      limits:
+        cpu: "800m"
+        memory: "3000Mi"
