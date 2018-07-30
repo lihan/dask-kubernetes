@@ -15,4 +15,7 @@ spec:
   - protocol: TCP
     port: 8787
     name: status-http
+  - protocol: TCP
+    port: 6006
+    name: tfboard-http
 
