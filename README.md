@@ -30,3 +30,8 @@ It uses Google Cloud Storage bucket to store your notebook for persistence so th
     client = Client(cluster)
     ```
     
+### How to customise the image
+
+1. Change the `Dockerfile`, build your image, and push it to any of the image storage service.
+2. Change the image name in `30-deployment.yaml` file
+3. Apply your kubernetes configuration
