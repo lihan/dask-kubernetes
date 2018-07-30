@@ -55,7 +55,8 @@ RUN pip3 install --no-cache-dir \
   chainer \
   graphviz \
   gcsfs  \
-  s3fs
+  s3fs   \
+  jgscm
 
 COPY config /work/config
 

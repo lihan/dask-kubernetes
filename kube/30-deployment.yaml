@@ -21,7 +21,7 @@ spec:
       containers:
         - name: notebook
           imagePullPolicy: Always
-          image: lihan/dask-ml:v4
+          image: lihan/dask-ml:v5
           args: ["bash", "/work/config/run.sh"]
           resources:
             requests:
@@ -37,6 +37,8 @@ spec:
               containerPort: 8889
             - name: status-http
               containerPort: 8787
+            - name: tfboard-http
+              containerPort: 6006
           securityContext:
             runAsGroup: 1000
           workingDir: /work
@@ -48,10 +50,3 @@ spec:
             timeoutSeconds: 3
             successThreshold: 1
             failureThreshold: 5
-          volumeMounts:
-            - name: notebook-storage
-              mountPath: /work/notebooks
-      volumes:
-        - name: notebook-storage
-          persistentVolumeClaim:
-            claimName: notebook-volume
