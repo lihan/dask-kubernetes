@@ -3,19 +3,24 @@ kind: Service
 metadata:
   name: svc-notebooks
 spec:
+  type: LoadBalancer
   selector:
     app: dask-notebook
   ports:
   - protocol: TCP
-    port: 8888
+    port: 80
+    targetPort: 8888
     name: http
   - protocol: TCP
     port: 8889
+    targetPort: 8889
     name: lab-http
   - protocol: TCP
     port: 8787
+    targetPort: 8787
     name: status-http
   - protocol: TCP
     port: 6006
+    targetPort: 6006
     name: tfboard-http
 
