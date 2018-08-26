@@ -7,16 +7,10 @@ It uses Google Cloud Storage bucket to store your notebook for persistence so th
 
 0. Create a GCS bucket for storing your notebooks
 1. Change `c.GoogleStorageContentManager.default_path` in `jupyter-config.py` to your GCS path
-3. Create a GKE cluster of your choice (Recommend 2CPU 7.5G or larger each node)
-4. Make the default account `cluster-admin`, in order to create role/service account for jupyter notebooks
-    ```
-    kubectl create clusterrolebinding cluster-admin-binding \ 
-      --clusterrole cluster-admin \
-      --user $(gcloud config get-value account)
-    ```
-5. `kubectl apply -f ./kube/`
-6. Connect to service using port forwarding `kubectl port-forward svc/svc-notebooks 8888:8888`
-7. Start using cluster!
+3. Create a GKE cluster of your choice (Recommend 2CPU 7.5G or larger each node), make sure turn on **legacy authorisation mode**
+4. `kubectl apply -f ./kube/`
+5. Connect to service using port forwarding `kubectl port-forward svc/svc-notebooks 8888:8888`, or use the public ip from `kubectl get svc`
+6. Start using cluster!
     ```
     from dask_kubernetes import KubeCluster
     

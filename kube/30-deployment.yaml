@@ -17,7 +17,6 @@ spec:
         app: dask-notebook
     spec:
       terminationGracePeriodSeconds: 60
-      serviceAccountName: daskkubernetes
       containers:
         - name: notebook
           imagePullPolicy: Always
