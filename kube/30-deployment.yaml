@@ -21,7 +21,7 @@ spec:
       containers:
         - name: notebook
           imagePullPolicy: Always
-          image: lihan/dask-ml:v5
+          image: lihan/dask-ml:v6
           args: ["bash", "/work/config/run.sh"]
           resources:
             requests:

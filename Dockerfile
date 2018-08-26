@@ -38,6 +38,7 @@ RUN pip3 install --no-cache-dir \
   jupyterlab \
   jupyter_dashboards \
   ipywidgets \
+  google-cloud==0.32.0 \
   numpy \
   pandas \
   dask[complete] \
@@ -45,6 +46,7 @@ RUN pip3 install --no-cache-dir \
   distributed \
   dask-searchcv \
   lightgbm \
+  xgboost \
   plotly \
   seaborn \
   bokeh \
@@ -56,7 +58,18 @@ RUN pip3 install --no-cache-dir \
   graphviz \
   gcsfs  \
   s3fs   \
-  jgscm
+  jgscm  \
+  imbalanced-learn \
+  deap \
+  update_checker \
+  tqdm \
+  stopit \
+  tpot  \
+  pyarrow \
+  dask-xgboost \
+  fastparquet \
+  cufflinks
+
 
 COPY config /work/config
 

@@ -5,7 +5,7 @@ metadata:
 spec:
   restartPolicy: Never
   containers:
-  - image: lihan/dask-ml:v5
+  - image: lihan/dask-ml:v6
     imagePullPolicy: Always
     args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 3GB, --death-timeout, '60']
     name: dask-worer
